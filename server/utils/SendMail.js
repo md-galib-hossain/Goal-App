@@ -12,7 +12,7 @@ export const SendMail = async (email,subject,text)=>{
 
     await transport.SendMail({
         from:process.env.SMTP_USER,
-        to:"mdgalibhosssain31@gmail.com",
+        to:"mdgalib23@gmail.com",
         subject,
         text
     })

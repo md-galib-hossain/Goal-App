@@ -1,5 +1,6 @@
 // server/models/users.mjs
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken"
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -31,8 +32,17 @@ const userSchema = new mongoose.Schema({
     completed: Boolean,
     createdAt: Date
   }],
+  verified:{
+type: Boolean,
+default: false
+  },
   otp: Number,
   otp_expiry: Date
 });
+userSchema.methods.getJWTToken = function (){
+return token = jwt.sign({_id: this._id},process.env.JWT_SECRET,{
+  expiresIn: process.env.JWT_SECRET_EXPIRY
+})
+}
 
 export const User = mongoose.model('User', userSchema);
